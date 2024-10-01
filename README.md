@@ -43,3 +43,6 @@
 
 ■ 画面遷移図
 https://www.figma.com/board/7V7c0nnhgSlGTXMmaMnzso/DayOutLog_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=igdGUbic9eyGdRY6-1
+
+■ ER図
+[![Image from Gyazo](https://i.gyazo.com/987856afaa2de696ec2ea9a29dcfe975.png)](https://gyazo.com/987856afaa2de696ec2ea9a29dcfe975)
