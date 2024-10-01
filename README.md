@@ -40,3 +40,6 @@
 
 ■ 機能の実装方針予定
 ・検索機能：Gem「ransack」を使用してタイトル、本文の検索ができるようにする
+
+■ 画面遷移図
+https://www.figma.com/board/7V7c0nnhgSlGTXMmaMnzso/DayOutLog_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=igdGUbic9eyGdRY6-1
