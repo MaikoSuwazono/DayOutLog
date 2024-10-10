@@ -1,0 +1,32 @@
+
+ja:
+  helpers:
+    submit:
+      create: 登録
+      submit: 保存
+      update: 更新
+    label:
+      email: メールアドレス
+      password: パスワード
+  user_sessions:
+    new:
+      title: ログイン
+      login: ログイン
+      to_register_page: 新規登録
+      password_forget: パスワードをお忘れの方
+    create:
+      success: ログインに成功しました
+      failure: ログインに失敗しました
+    destroy:
+      success: ログアウトしました
+  users:
+    new:
+      title: ユーザー登録
+      submit: 登録
+      to_login_page: ログインページへ
+    create:
+      success: ユーザー登録が完了しました
+      failure: ユーザー登録に失敗しました
+  header:
+    login: ログイン
+    logout: ログアウト
