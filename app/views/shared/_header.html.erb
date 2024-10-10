@@ -1,0 +1,19 @@
+<header>
+  <nav class="navbar navbar-expand-lg" style="background-color: #eef8f7;">
+    <div class="container-fluid">
+      <%= link_to image_tag("DayOutLog_header.png", width: '200'), "#", class: 'navbar-brand' %>
+      <ul class="navbar-nav ml-auto d-flex justify-content-end">
+        <li class="nav-item">
+          <button class="btn btn-dark" type="button">新規投稿</button>
+        </li>
+        <li class="nav-item rt-my-icon d-flex align-items-center">
+          <div class="pc-header-menu-tab pc-layout">
+            <%= link_to "#", { class: "rt-menu-pc nav-link pc-header-category-menu pt-0 pb-0 pr-0 pl-0 pc-layout", id: "rt-menu-pc" }, role: "button" do %>
+              <i class="fa-solid fa-user">testuser</i>
+            <% end %>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
