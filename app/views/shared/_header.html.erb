@@ -4,7 +4,7 @@
       <%= link_to image_tag("DayOutLog_header.png", width: '200'), root_path, class: 'navbar-brand' %>
       <ul class="navbar-nav ml-auto d-flex align-items-center">
         <li class="nav-item">
-          <button class="btn btn-dark" type="button">新規投稿</button>
+          <%= button_to "新規投稿", new_post_path, { method: :get, class: "btn btn-dark" } %>
         </li>
         <li class="nav-item dropdown">
           <%= link_to "#", { class: "nav-link dropdown-toggle", id: "rt-menu-pc", role: "button", data: { bs_toggle: "dropdown" }, aria: { expanded: "false" } } do %>
