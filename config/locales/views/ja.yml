@@ -27,6 +27,9 @@ ja:
     create:
       success: ユーザー登録が完了しました
       failure: ユーザー登録に失敗しました
+  posts:
+    index:
+      title: 記事一覧
   header:
     login: ログイン
     logout: ログアウト

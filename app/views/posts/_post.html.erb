@@ -1,0 +1,20 @@
+<div class="col-sm-12 col-lg-4 mb-3">
+  <div id="post-id-<%= post.id %>">
+    <div class="card">
+      <%= link_to post, class: "card-body" do %>
+        <%= image_tag "DayOutLog.png", class: "card-img-top", width: "300", height:"200" %>
+        <div class="card-body">
+          <div class="d-flex">
+            <h4 class="card-title">
+              <%= post.title %>
+            </h4>
+          </div>
+          <ul class="list-inline">
+            <li><%= post.user.name %></li>
+            <li><%= l post.created_at, format: :time %></li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
