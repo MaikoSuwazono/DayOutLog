@@ -30,6 +30,9 @@ ja:
   posts:
     index:
       title: 記事一覧
+    new:
+      title: 新規投稿作成
+      submit: 投稿
   header:
     login: ログイン
     logout: ログアウト
