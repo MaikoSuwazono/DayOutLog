@@ -1,0 +1,24 @@
+<tr id="post_detail-<%= post_detail.id %>">
+  <% if post_detail.image.present? %>
+    <td style="width: 60px">
+      <%= image_tag post_detail.image.url, width: "50", height: "50", class: "rounded-circle" %>
+    </td>
+  <% end %>
+  <td>
+    <h3 class="small"><%= post_detail.arrival_at %></h3>
+    <h4 class="small"><%= post_detail.address %></h4>
+    <p><%= simple_format(post_detail.body) %></p>
+  </td>
+  <td class="action">
+    <ul class="list-inline justify-content-center" style="float: right;">
+      <li class="list-inline-item">
+        <%= link_to "#", class: "edit-post_detail-link" do %>
+          <i class="bi bi-pencil-fill"></i>
+        <% end %>
+      </li>
+      <li class="list-inline-item">
+        <%= link_to "削除", post_detail_path(post_detail), class: "btn btn-danger", id: "button-delete-#{post_detail.id}", method: :delete, data: { turbo_method: :delete, confirm: '行き先を削除します。よろしいですか？' } %>
+      </li>
+    </ul>
+  </td>
+</tr>

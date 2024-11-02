@@ -1,0 +1,12 @@
+<%= turbo_stream.remove "post_detail-#{@post_detail.id}" %>
+<% if @post_details.any? %>
+  <%= turbo_stream.replace "table-post_detail" do %>
+    <tbody id="table-post_detail">
+      <%= render @post_details %>
+    </tbody>
+  <% end %>
+<% else %>
+  <%= turbo_stream.replace "table-post_detail" do %>
+    <p class="text-center p-3">まだ行き先が追加されていません</p>
+  <% end %>
+<% end %>
