@@ -11,3 +11,11 @@ ja:
       post:
         title: タイトル
         departure_date: 出発日
+        image: サムネイル
+      post_detail:
+        body: 本文
+        arrival_at: 到着時間
+        image: 画像
+        address: 住所
+        latitude: 緯度
+        longitude: 経度

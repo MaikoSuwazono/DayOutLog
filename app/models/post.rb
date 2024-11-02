@@ -1,6 +1,11 @@
 class Post < ApplicationRecord
-  validates :title, presence: true, uniqueness: true
-  validates :departure_date, presence: true, uniqueness: true
+  has_many :post_details, dependent: :destroy
+  accepts_nested_attributes_for :post_details, allow_destroy: true
+
+  enum status: { draft: 0, published: 1 }
+
+  validates :title, presence: true
+  validates :departure_date, presence: true
   validate :day_after_today
 
   belongs_to :user

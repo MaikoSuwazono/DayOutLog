@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.includes(:post_details).where(status: 1).order(created_at: :desc)
   end
 
   def new
@@ -11,16 +11,21 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to posts_path, success: "記事が投稿されました"
+      redirect_to new_post_post_detail_path(@post), success: "記事が作成されました"
     else
       flash.now[:danger] = "記事の作成に失敗しました"
       render :new, status: :unprocessable_entity
     end
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @post_details = @post.post_details.order(:arrival_at)
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:title, :departure_date)
+    params.require(:post).permit(:title, :departure_date, post_details_attributes: [:id, :body, :arrival_at, :image, :address, :latitude, :longitude])
   end
 end

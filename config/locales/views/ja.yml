@@ -33,6 +33,9 @@ ja:
     new:
       title: 新規投稿作成
       submit: 投稿
+  post_details: 
+    new:
+      title: 行き先を追加
   header:
     login: ログイン
     logout: ログアウト

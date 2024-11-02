@@ -1,0 +1,38 @@
+<% content_for(:title, @post.title) %>
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2 my-5">
+      <h1 class="fw-bold fs-3 text-center">新規投稿作成</h1>
+      <div class="col-md-9">
+        <h3 style="display: inline;" class="fw-bold"><%= @post.title %></h3>
+        <ul class="list-inline">
+          <li class="list-inline-item"><%= "by #{@post.user.name}" %></li>
+          <li class="list-inline-item text-secondary"><%= l(@post.created_at, format: :time)%></li>
+        </ul>
+        <p class="fw-bold fs-5"><%= l @post.departure_date %></p>
+      </div>
+      <table class="table">
+        <tbody id="table-post_detail">
+          <% if @post_details.any? %>
+            <%= render @post_details %>
+          <% else %>
+            <tr id="post_detail">
+              <td>
+                <p class="text-center p-3">まだ行き先が追加されていません</p>
+              </td>
+            </tr>
+          <% end %>      
+        </tbody>
+      </table>
+      <div id="post_detail-form">
+        <%= render 'post_details/form', post_detail: @post_detail, post: @post %>
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto my-2">
+        <%= link_to "記事を投稿する", publish_post_post_details_path, class: "btn btn-success", data: { turbo_method: "get", turbo_confirm: "記事を投稿します。よろしいですか？" } %>
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto my-2">
+        <%= link_to "キャンセル", posts_path, class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

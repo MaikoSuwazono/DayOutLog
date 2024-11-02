@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   resources :users, only: %i[new create]
-  resources :posts
+  resources :posts do
+    resources :post_details, shallow: true do
+      collection do
+        get 'publish'
+      end
+    end
+  end
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
