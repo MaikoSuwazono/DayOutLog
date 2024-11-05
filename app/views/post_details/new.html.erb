@@ -1,19 +1,22 @@
 <% content_for(:title, @post.title) %>
 <div class="container pt-3">
   <div class="row">
-    <div class="col-lg-8 offset-lg-2 my-5">
+    <div class="col-lg-9 offset-lg-2 my-5">
       <h1 class="fw-bold fs-3 text-center">新規投稿作成</h1>
-      <div class="col-md-9">
-        <h3 style="display: inline;" class="fw-bold"><%= @post.title %></h3>
-        <ul class="list-inline">
-          <li class="list-inline-item"><%= "by #{@post.user.name}" %></li>
-          <li class="list-inline-item text-secondary"><%= l(@post.created_at, format: :time)%></li>
-        </ul>
-        <p class="fw-bold fs-5"><%= l @post.departure_date %></p>
-      </div>
+      <% if @post.image.present? %>
+        <div class="text-center">
+          <%= image_tag @post.image.url, class: "img-fluid" %>
+        </div>
+      <% end %>
+      <h3 style="display: inline;" class="fw-bold"><%= @post.title %></h3>
+      <ul class="list-inline">
+        <li class="list-inline-item"><%= "by #{@post.user.name}" %></li>
+        <li class="list-inline-item text-secondary"><%= l(@post.created_at, format: :time)%></li>
+      </ul>
+      <p class="fw-bold fs-5"><%= l @post.departure_date %></p>
       <table class="table">
         <tbody id="table-post_detail">
-          <% if @post_details.any? %>
+          <% if @post_details != nil && @post_details.any? %>
             <%= render @post_details %>
           <% else %>
             <tr id="post_detail">

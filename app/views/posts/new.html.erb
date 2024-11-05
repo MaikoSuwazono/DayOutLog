@@ -6,11 +6,11 @@
       <%= form_with model: @post, class: "new_post", local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="mb-3">
-          <%= f.label :title %>
+          <%= f.label :title, "タイトル [必須]" %>
           <%= f.text_field :title, class: "form-control" %>
         </div>
         <div class="mb-3">
-          <%= f.label :departure_date %>
+          <%= f.label :departure_date, "出発日 [必須]" %>
           <%= f.date_field :departure_date, class: "form-control" %>
         </div>
         <div class="mb-3">

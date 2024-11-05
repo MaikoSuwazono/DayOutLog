@@ -1,23 +1,22 @@
 <tr id="post_detail-<%= post_detail.id %>">
-  <% if post_detail.image.present? %>
-    <td style="width: 60px">
-      <%= image_tag post_detail.image.url, width: "50", height: "50", class: "rounded-circle" %>
-    </td>
-  <% end %>
   <td>
-    <h3 class="small"><%= post_detail.arrival_at %></h3>
-    <h4 class="small"><%= post_detail.address %></h4>
-    <p><%= simple_format(post_detail.body) %></p>
+    <h3 class="small"><%= l post_detail.arrival_at, format: :shorttime %></h3>
   </td>
-  <td class="action">
+  <td>
+    <%= simple_format(post_detail.body) %>
+    <% if post_detail.address.present? %>
+      <h4 class="small">&#x1F4CD; <%= post_detail.address %></h4>
+    <% end %>
+  </td>
+  <td style="width: 200px">
+    <% if post_detail.image.present? %>
+      <%= image_tag post_detail.image.url, width: "200", height: "200", class: "rounded" %>
+    <% end %>
+  </td>
+  <td class="action" style="width: 100px">
     <ul class="list-inline justify-content-center" style="float: right;">
       <li class="list-inline-item">
-        <%= link_to "#", class: "edit-post_detail-link" do %>
-          <i class="bi bi-pencil-fill"></i>
-        <% end %>
-      </li>
-      <li class="list-inline-item">
-        <%= link_to "削除", post_detail_path(post_detail), class: "btn btn-danger", id: "button-delete-#{post_detail.id}", method: :delete, data: { turbo_method: :delete, confirm: '行き先を削除します。よろしいですか？' } %>
+        <%= link_to "削除", post_detail_path(post_detail), class: "btn btn-danger", id: "button-delete-#{post_detail.id}", method: :delete, data: { turbo_method: :delete, turbo_confirm: '行き先を削除します。よろしいですか？' } %>
       </li>
     </ul>
   </td>
