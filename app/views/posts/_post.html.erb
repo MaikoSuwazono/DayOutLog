@@ -2,7 +2,7 @@
   <div id="post-id-<%= post.id %>">
     <div class="card">
       <%= link_to post, class: "card-body" do %>
-        <%= image_tag post.image.url, class: "card-img-top img-fluid", width: "300", height:"200" %>
+        <%= image_tag post.image.url, width: "300", height: "300", style: "object-fit: cover;", class: "card-img-top img-responsive" %>
         <div class="card-body">
           <div class="d-flex">
             <h4 class="card-title fw-bold">
