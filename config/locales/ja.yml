@@ -3,3 +3,4 @@ ja:
     formats:
       default: "%Y/%m/%d"
       time: "%Y/%m/%d %H:%M"
+      shorttime: "%H:%M"

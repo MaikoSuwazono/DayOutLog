@@ -13,18 +13,23 @@ class PostDetailsController < ApplicationController
     @post_detail = PostDetail.new(post_detail_params)
     @post = @post_detail.post
   
+    if @post_detail.arrival_at.present?
+      @post_detail.arrival_at = DateTime.new(@post.departure_date.year, @post.departure_date.month, @post.departure_date.day,
+                                              @post_detail.arrival_at.hour, @post_detail.arrival_at.min, @post_detail.arrival_at.sec)
+    end
+
     if @post_detail.save
       @post_details = @post_detail.post.post_details.order(arrival_at: :asc)
       @post_detail = PostDetail.new
 
       respond_to do |format|
-        format.html { redirect_to post_path(@post), notice: '行き先が追加されました。' }
+        format.html { redirect_to post_post_details_path(@post), notice: '行き先が追加されました。' }
         format.turbo_stream
       end
     else
       respond_to do |format|
-        format.html { render :new }
-        format.turbo_stream { render turbo_stream: turbo_stream.replace('post_details', partial: 'post_details/form', locals: { post_detail: @post_detail }) }
+        format.html { redirect_to post_post_details_path(@post), danger: '行き先が追加されませんでした。', status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end

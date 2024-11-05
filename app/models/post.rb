@@ -8,11 +8,13 @@ class Post < ApplicationRecord
   validates :departure_date, presence: true
   validate :day_after_today
 
+  mount_uploader :image, PostImageUploader
+
   belongs_to :user
 
   def day_after_today
     unless departure_date == nil
-      errors.add(:departure_date, "は過去の日付を入力して下さい") if departure_date >= Date.today
+      errors.add(:departure_date, "は過去の日付を入力してください") if departure_date >= Date.today
     end
   end
 end

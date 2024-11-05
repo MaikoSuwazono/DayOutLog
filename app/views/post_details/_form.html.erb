@@ -1,28 +1,28 @@
-<div class="nested-fields bg-secondary-subtle rounded-3" id="post_detail-form">
-  <div class="pt-3">
-    <h2 class="fw-bold fs-4 text-center">行き先追加</h2>
+<%= form_with(model: [post, post_detail], data: { turbo: true }) do |f| %>
+  <%= render 'shared/error_messages', object: post_detail %>
+  <div class="nested-fields bg-secondary-subtle rounded-3">
+    <div class="pt-3">
+      <h2 class="fw-bold fs-4 text-center">行き先追加</h2>
+    </div>
+      <div class="m-3">
+        <%= f.label :body, "本文 [必須]" %>
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
+      <div class="m-3">
+        <%= f.label :arrival_at, "到着時間 [必須]"  %>
+        <%= f.time_field :arrival_at, class: "form-control" %>
+      </div>
+      <div class="m-3">
+        <%= f.label :image %>
+        <%= f.file_field :image, class: "form-control", accept: 'image/*' %>
+        <%= f.hidden_field :image_cache %>
+      </div>
+      <div class="m-3">
+        <%= f.label :address %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto my-2 pb-3">
+        <%= f.submit "追加", class: "btn btn-dark" %>
+      </div>
   </div>
-  <%= form_with(model: post_detail, url: post_post_details_path(post), data: { turbo: true }) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <div class="m-3">
-      <%= f.label :body %>
-      <%= f.text_field :body, class: "form-control", id: "body" %>
-    </div>
-    <div class="m-3">
-      <%= f.label :arrival_at %>
-      <%= f.time_field :arrival_at, class: "form-control", id: "arrival_at" %>
-    </div>
-    <div class="m-3">
-      <%= f.label :image %>
-      <%= f.file_field :image, class: "form-control", id: "image", accept: 'image/*' %>
-      <%= f.hidden_field :image_cache %>
-    </div>
-    <div class="m-3">
-      <%= f.label :address %>
-      <%= f.text_field :address, class: "form-control", id: "address" %>
-    </div>
-    <div class="d-grid gap-2 col-6 mx-auto my-2 pb-3">
-      <%= f.submit "追加", class: "btn btn-dark" %>
-    </div>
-  <% end %>
-</div>
+<% end %>
