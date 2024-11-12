@@ -23,7 +23,7 @@
         <%= f.hidden_field :longitude, id: 'longitude' %>
         <%= f.label :address %>
         <%= f.text_field :address, id: "pac-input", class: "form-control", placeholder: "検索" %>
-        <div class="m-3" id='map' style="height: 400px;"></div>
+        <div class="m-3" id='form_map' style="height: 400px;"></div>
       </div>
       <div class="d-grid gap-2 col-6 mx-auto my-2 pb-3">
         <%= f.submit "追加", class: "btn btn-dark", id: "add-post_detail" %>

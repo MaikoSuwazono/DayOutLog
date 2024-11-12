@@ -1,5 +1,5 @@
 function initAutocomplete() {
-  const map = new google.maps.Map(document.getElementById("map"), {
+  const map = new google.maps.Map(document.getElementById("form_map"), {
     center: { lat: 35.6803997, lng: 139.7690174 },
     zoom: 15,
     mapTypeId: "roadmap",
