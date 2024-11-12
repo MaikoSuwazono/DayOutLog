@@ -2,5 +2,6 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
-import "@hotwired/turbo-rails"
-import "controllers"
+import "@hotwired/turbo-rails";
+import "controllers";
+import "./post_details/form";
