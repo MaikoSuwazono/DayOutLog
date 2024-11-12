@@ -1,11 +1,11 @@
 <tr id="post_detail-<%= post_detail.id %>">
-  <td>
+  <td style="width: 55px">
     <h3 class="small"><%= l post_detail.arrival_at, format: :shorttime %></h3>
   </td>
-  <td>
+  <td style="width: 600px">
     <%= simple_format(post_detail.body) %>
     <% if post_detail.address.present? %>
-      <h4 class="small">&#x1F4CD; <%= post_detail.address %></h4>
+      <h4 class="small">&#x1F4CD; <%= post_detail.place_name %></h4>
     <% end %>
   </td>
   <td style="width: 200px">
@@ -14,7 +14,7 @@
     <% end %>
   </td>
   <% if action_type == :new %>
-    <td class="action" style="width: 100px">
+    <td class="action">
       <ul class="list-inline justify-content-center" style="float: right;">
         <li class="list-inline-item">
           <%= link_to "削除", post_detail_path(post_detail), class: "btn btn-danger", id: "button-delete-#{post_detail.id}", method: :delete, data: { turbo_method: :delete, turbo_confirm: '行き先を削除します。よろしいですか？' } %>

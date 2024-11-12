@@ -67,6 +67,6 @@ class PostDetailsController < ApplicationController
   private
 
   def post_detail_params
-    params.require(:post_detail).permit(:body, :arrival_at, :image, :image_cache, :address, :latitude, :longitude).merge(post_id: params[:post_id])
+    params.require(:post_detail).permit(:body, :arrival_at, :image, :image_cache, :place_name, :address, :latitude, :longitude).merge(post_id: params[:post_id])
   end
 end
