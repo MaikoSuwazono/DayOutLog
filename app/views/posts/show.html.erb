@@ -18,6 +18,50 @@
           <%= render @post_details, action_type: :show %>
         </tbody>
       </table>
+      <div id="show_map"></div>
     </div>
   </div>
 </div>
+<script>
+  function initMap() {
+    const map = new google.maps.Map(document.getElementById("show_map"), {
+      center: { lat: 35.6803997, lng: 139.7690174 },
+      zoom: 15,
+      mapTypeId: "roadmap",
+    });
+    const input = document.getElementById("pac-input");
+
+    let markers = [];
+
+    searchBox.addListener("places_changed", () => {
+      const places = <% @post_details %>
+
+      if (places.length == 0) {
+        return;
+      }
+
+      markers.forEach((marker) => {
+        marker.setMap(null);
+      });
+      markers = [];
+
+      const bounds = new google.maps.LatLngBounds();
+
+      places.forEach((place) => {
+        if (!place.address) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+
+        markers.push(
+          new google.maps.Marker({
+            map,
+            position: { lat: place.latitude, lng: place.longitude }
+          }),
+        );
+      map.fitBounds(bounds);
+    });
+  };
+
+  initMap();
+</script>
