@@ -4,4 +4,3 @@
 //= require bootstrap
 import "@hotwired/turbo-rails";
 import "controllers";
-import "./post_details/form";
