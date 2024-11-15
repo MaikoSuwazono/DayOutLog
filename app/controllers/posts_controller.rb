@@ -23,6 +23,12 @@ class PostsController < ApplicationController
     @post_details = @post.post_details.order(:arrival_at)
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy!
+    redirect_to posts_path, success: "記事が削除されました", status: :see_other
+  end
+
   private
 
   def post_params

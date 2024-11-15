@@ -9,4 +9,8 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { in: 3..20 }
 
   has_many :posts, dependent: :destroy
+
+  def own?(object)
+    self.id == object.user_id
+  end
 end

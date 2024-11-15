@@ -7,7 +7,16 @@
           <%= image_tag @post.image.url, height: "300", style: "object-fit: cover;", class: "img-responsive" %>
         </div>
       <% end %>
-      <h3 style="display: inline;" class="fw-bold"><%= @post.title %></h3>
+      <ul class="list-inline d-flex mb-3">
+        <li class="list-inline-item me-auto">
+          <h3 style="display: inline;" class="fw-bold"><%= @post.title %></h3>
+        </li>
+        <% if current_user.own?(@post) %>
+          <li class="list-inline-item">
+            <%= link_to "削除", post_path(@post), class: "btn btn-danger", id: "button-delete", data: { turbo_method: :delete, turbo_confirm: '記事を削除します。よろしいですか？' } %>
+          </li>
+        <% end %>
+      </ul>
       <ul class="list-inline">
         <li class="list-inline-item"><%= "by #{@post.user.name}" %></li>
         <li class="list-inline-item text-secondary"><%= l(@post.created_at, format: :time)%></li>
@@ -18,50 +27,62 @@
           <%= render @post_details, action_type: :show %>
         </tbody>
       </table>
-      <div id="show_map"></div>
+      <% if @post_details.any? { |post_detail| !post_detail.latitude.nil? } %>
+        <div class="m-3" id='map' style="height: 400px;"></div>
+        <div id="post_details_info" data-json="<%= @post_details.to_json %>" hidden></div>
+      <% end %>
     </div>
   </div>
 </div>
 <script>
+  var map;
+  var marker = [];
+  var infoWindow = [];
+  var markerLatLng;
+  var markerData = JSON.parse(document.getElementById("post_details_info").dataset.json);
+
   function initMap() {
-    const map = new google.maps.Map(document.getElementById("show_map"), {
+    var geocoder = new google.maps.Geocoder()
+    var bounds = new google.maps.LatLngBounds();
+
+    map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: 35.6803997, lng: 139.7690174 },
       zoom: 15,
       mapTypeId: "roadmap",
     });
-    const input = document.getElementById("pac-input");
 
-    let markers = [];
-
-    searchBox.addListener("places_changed", () => {
-      const places = <% @post_details %>
-
-      if (places.length == 0) {
-        return;
+    for (var i = 0; i < markerData.length; i++) {
+      if (markerData[i]['latitude'] === null) {
+        continue;
       }
 
-      markers.forEach((marker) => {
-        marker.setMap(null);
+      var id = markerData[i]['id']
+
+      markerLatLng = new google.maps.LatLng({
+        lat: markerData[i]['latitude'],
+        lng: markerData[i]['longitude']
       });
-      markers = [];
 
-      const bounds = new google.maps.LatLngBounds();
+      marker[i] = new google.maps.Marker({
+        position: markerLatLng,
+        map: map
+      });
 
-      places.forEach((place) => {
-        if (!place.address) {
-          console.log("Returned place contains no geometry");
-          return;
-        }
+      bounds.extend (marker[i].position);
 
-        markers.push(
-          new google.maps.Marker({
-            map,
-            position: { lat: place.latitude, lng: place.longitude }
-          }),
-        );
-      map.fitBounds(bounds);
-    });
+      infoWindow[i] = new google.maps.InfoWindow({
+        content: markerData[i]['place_name']
+      });
+
+      markerEvent(i);
+    }
+
+    map.fitBounds (bounds);
   };
 
-  initMap();
+  function markerEvent(i) {
+    marker[i].addListener('click', function () {
+      infoWindow[i].open(map, marker[i]);
+    });
+  }
 </script>

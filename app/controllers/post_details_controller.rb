@@ -18,6 +18,10 @@ class PostDetailsController < ApplicationController
                                               @post_detail.arrival_at.hour, @post_detail.arrival_at.min, @post_detail.arrival_at.sec)
     end
 
+    if @post_detail.latitude.nil?
+      @post_detail.address = nil
+    end
+
     if @post_detail.save
       @post_details = @post_detail.post.post_details.order(arrival_at: :asc)
       @post_detail = PostDetail.new
