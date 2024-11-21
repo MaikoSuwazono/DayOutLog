@@ -5,7 +5,7 @@
       <h1 class="fw-bold fs-3 text-center">新規投稿作成</h1>
       <% if @post.image.present? %>
         <div class="text-center p-3">
-          <%= image_tag @post.image.url, width: "500", style: "object-fit: cover;", class: "img-fluid" %>
+          <%= image_tag @post.image.url, height: "300", style: "object-fit: cover;", class: "img-responsive" %>
         </div>
       <% end %>
       <h3 style="display: inline;" class="fw-bold"><%= @post.title %></h3>
