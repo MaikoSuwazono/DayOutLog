@@ -9,8 +9,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       redirect_to root_path, success: t('.success')
-    else
-      render :new, status: :unprocessable_entity, success: t('.failure')
+    else 
+      flash.now[:danger] = t('.failure')
+      render :new, status: :unprocessable_entity, success: 
     end
   end
 
