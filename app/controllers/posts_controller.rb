@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  skip_before_action :require_login, only: [:index, :show]
+  
   def index
     @posts = Post.includes(:post_details).where(status: 1).order(created_at: :desc)
   end
