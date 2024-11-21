@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
 
+  def show
+    @user = current_user
+    @posts = current_user.posts.includes(:post_details).where(status: 1).order(created_at: :desc)
+  end
+
   def new
     @user = User.new
   end

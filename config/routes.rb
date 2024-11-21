@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root 'posts#index'
 
-  resources :users, only: %i[new create]
+  resources :users, only: %i[show new create]
   resources :posts do
     resources :post_details, shallow: true do
       collection do

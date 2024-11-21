@@ -11,6 +11,11 @@
         <li class="list-inline-item me-auto">
           <h3 style="display: inline;" class="fw-bold"><%= @post.title %></h3>
         </li>
+        <% if !current_user.nil? && current_user.own?(@post) %>
+          <li class="list-inline-item">
+            <%= link_to "削除", post_path(@post), class: "btn btn-danger", id: "button-delete", data: { turbo_method: :delete, turbo_confirm: '記事を削除します。よろしいですか？' } %>
+          </li>
+        <% end %>
       </ul>
       <ul class="list-inline">
         <li class="list-inline-item"><%= "by #{@post.user.name}" %></li>
