@@ -1,0 +1,4 @@
+<% post_id = @post.id %>
+<%= turbo_stream.replace "like-inactive-button-for-post-#{post_id}" do %>
+  <%= render 'likes/like_active', post: @post %>
+<% end %>

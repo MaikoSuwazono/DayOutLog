@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         get 'publish'
       end
     end
+    resource :likes, only: %i[create destroy]
   end
 
   get 'login', to: 'user_sessions#new'
