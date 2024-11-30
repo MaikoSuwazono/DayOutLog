@@ -21,6 +21,11 @@
         <li class="list-inline-item"><%= "by #{@post.user.name}" %></li>
         <li class="list-inline-item text-secondary"><%= l(@post.created_at, format: :time)%></li>
       </ul>
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <%= render "likes/like_button", post: @post %>
+        </li>
+      </ul>
       <p class="fw-bold fs-5"><%= l @post.departure_date %></p>
       <table class="table">
         <tbody id="table-post_detail">

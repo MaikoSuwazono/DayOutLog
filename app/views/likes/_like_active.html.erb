@@ -1,0 +1,6 @@
+<%= link_to post_likes_path(post), class: "link-body-emphasis link-offset-2 link-underline link-underline-opacity-0", data: { turbo_method: :delete } do %>
+  <div id="like-active-button-for-post-<%= post.id %>">
+    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+    <%= post.likes.count %>
+  </div>
+<% end %>

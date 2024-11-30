@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
 
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   def own?(object)
     self.id == object.user_id
