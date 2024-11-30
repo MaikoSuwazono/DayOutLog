@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
   
   def index
-    @posts = Post.includes(:post_details).where(status: 1).order(created_at: :desc)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).includes(:post_details).where(status: 1).order(created_at: :desc)
   end
 
   def new
@@ -35,5 +36,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :departure_date, :image, post_details_attributes: [:id, :body, :arrival_at, :image, :address, :latitude, :longitude])
+  end
+
+  def set_search_object
+    @q = Post.ransack(params[:q])
   end
 end

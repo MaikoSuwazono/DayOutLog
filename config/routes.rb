@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[show new create]
   resources :posts do
+    collection do
+      get 'search', to: 'posts#search', as: :search
+    end
     resources :post_details, shallow: true do
       collection do
         get 'publish'
