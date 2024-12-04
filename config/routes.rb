@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
 
   get 'terms_of_service', to: 'pages#terms_of_service'
+  get 'privacy', to: 'pages#privacy'
 end
+  
