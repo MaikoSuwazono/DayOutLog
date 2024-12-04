@@ -20,3 +20,5 @@ ja:
         address: 住所
         latitude: 緯度
         longitude: 経度
+      comment:
+        body: コメント
