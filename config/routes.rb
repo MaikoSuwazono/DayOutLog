@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         get 'publish'
       end
     end
+    resources :comments, only: %i[create destroy]
     resource :likes, only: %i[create destroy]
   end
 

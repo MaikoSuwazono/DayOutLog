@@ -24,6 +24,8 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_details = @post.post_details.order(:arrival_at)
+    @comment = Comment.new
+    @comments = @post.comments.includes(:user).order(created_at: :desc)
   end
 
   def destroy

@@ -1,0 +1,5 @@
+<%= turbo_stream.remove "comment-#{@comment.id}" %>
+
+<%= turbo_stream.replace "comment-count" do %>
+  <p class="fw-bold", id="comment-count"><%= @comments.count %>件のコメント</p>
+<% end %>
