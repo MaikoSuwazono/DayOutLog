@@ -41,3 +41,6 @@ ja:
   header:
     login: ログイン
     logout: ログアウト
+  pages:
+    terms_of_service:
+      title: 利用規約
