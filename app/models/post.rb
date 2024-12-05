@@ -1,5 +1,8 @@
 class Post < ApplicationRecord
   has_many :post_details, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
   accepts_nested_attributes_for :post_details, allow_destroy: true
 
   enum status: { draft: 0, published: 1 }
@@ -16,5 +19,9 @@ class Post < ApplicationRecord
     unless departure_date == nil
       errors.add(:departure_date, "は今日より前の日付を入力してください") if departure_date > Date.today
     end
+  end
+
+  def liked_by?(user)
+    likes.exists?(user_id: user.id)
   end
 end

@@ -12,6 +12,10 @@
           <ul class="list-inline">
             <li><%= post.user.name %></li>
             <li><%= l post.created_at, format: :time %></li>
+            <li>
+              <i class="fas fa-heart" aria-hidden="true"></i>
+              <%= post.likes.count %>
+            </li>
           </ul>
         </div>
       <% end %>

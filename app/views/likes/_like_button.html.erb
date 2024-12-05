@@ -1,0 +1,8 @@
+<% if current_user.nil? || (!current_user.nil? && current_user.own?(@post)) %>
+  <i class="fas fa-heart" aria-hidden="true"></i>
+  <%= post.likes.count %>
+<% elsif post.liked_by?(current_user) %>
+  <%= render "likes/like_active", post: @post %>
+<% else %>
+  <%= render "likes/like_inactive", post: @post %>
+<% end %>

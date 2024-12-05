@@ -5,6 +5,8 @@ ja:
       create: 登録
       submit: 保存
       update: 更新
+      post: 投稿
+      cancel: キャンセル
     label:
       email: メールアドレス
       password: パスワード
@@ -39,3 +41,6 @@ ja:
   header:
     login: ログイン
     logout: ログアウト
+  pages:
+    terms_of_service:
+      title: 利用規約
