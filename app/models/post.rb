@@ -17,7 +17,7 @@ class Post < ApplicationRecord
 
   def day_after_today
     unless departure_date == nil
-      errors.add(:departure_date, "は過去の日付を入力してください") if departure_date >= Date.today
+      errors.add(:departure_date, "は今日より前の日付を入力してください") if departure_date > Date.today
     end
   end
 

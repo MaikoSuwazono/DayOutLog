@@ -39,7 +39,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_02_061122) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
+ 
   create_table "post_details", force: :cascade do |t|
     t.bigint "post_id", null: false
     t.string "body", null: false

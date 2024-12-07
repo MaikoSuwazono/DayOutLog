@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
 
   has_many :posts, dependent: :destroy
+  has_many :authentications, :dependent => :destroy
+  accepts_nested_attributes_for :authentications
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 

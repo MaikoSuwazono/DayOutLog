@@ -59,6 +59,10 @@ gem 'geocoder'
 
 gem 'fog-aws'
 
+gem 'config'
+
+gem 'googleauth'
+
 gem 'ransack'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
