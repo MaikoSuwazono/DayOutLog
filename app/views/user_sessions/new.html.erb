@@ -17,7 +17,11 @@
           <%= f.submit t('.login'), class: "btn btn-dark" %>
         </div>
       <% end %>
-      <%= link_to 'Login with Google', auth_at_provider_path(provider: :google) %>
+      <hr>
+      </div>
+      <div class="text-center">
+        <%= link_to image_tag("web_light_sq_SI@1x.png"), auth_at_provider_path(provider: :google) %>
+      </div>
       <div class="text-center p-3">
         <%= link_to t('.to_register_page'), new_user_path, class: "link-secondary" %> /
         <%= link_to t('.password_forget'), '#', class: "link-secondary" %>
