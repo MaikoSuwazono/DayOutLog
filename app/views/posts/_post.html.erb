@@ -4,17 +4,24 @@
       <%= link_to post, class: "card-body" do %>
         <%= image_tag post.image.url, width: "300", height: "300", style: "object-fit: cover;", class: "card-img-top img-responsive" %>
         <div class="card-body">
-          <div class="d-flex">
-            <h4 class="card-title fw-bold">
-              <%= post.title %>
-            </h4>
-          </div>
           <ul class="list-inline">
-            <li><%= post.user.name %></li>
-            <li><%= l post.created_at, format: :time %></li>
             <li>
+              <h4 class="card-title fw-bold"><%= post.title %></h4>
+            </li>
+            <li>
+              <p class="card-subtitle text-body-secondary"><%= l post.created_at, format: :time %></p>
+            </li>
+            <li class="card-text">
               <i class="fas fa-heart" aria-hidden="true"></i>
               <%= post.likes.count %>
+            </li>
+          </ul>
+          <ul class="list-inline d-flex mb-1">
+            <li class="list-inline-item">
+              <%= image_tag post.user.avatar_url, class: 'rounded-circle mr15', width: '20', height: '20' %>
+            </li>
+            <li class="list-inline-item">
+              <%= "#{post.user.name}" %>
             </li>
           </ul>
         </div>

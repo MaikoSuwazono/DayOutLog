@@ -8,6 +8,7 @@ ja:
         name: ユーザー名
         password: パスワード
         password_confirmation: パスワード確認
+        avatar: プロフィール画像
       post:
         title: タイトル
         departure_date: 出発日

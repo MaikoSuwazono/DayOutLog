@@ -8,7 +8,12 @@ class LikesController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     @like = current_user.likes.find_by(post_id: @post.id)
-    logger.debug "like: #{@like}"
     @like.destroy!
+  end
+
+  def show
+    @user = current_user
+    @likes = Like.where(user_id: @user.id).pluck(:post_id)
+    @posts = Post.find(@likes)
   end
 end

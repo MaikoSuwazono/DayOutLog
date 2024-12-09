@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root 'posts#index'
 
-  resources :users, only: %i[show new create]
+  resources :users
   resources :posts do
     collection do
       get 'search', to: 'posts#search', as: :search
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       end
     end
     resources :comments, only: %i[create destroy]
-    resource :likes, only: %i[create destroy]
+    resource :likes, only: %i[create destroy show]
   end
 
   get 'login', to: 'user_sessions#new'
