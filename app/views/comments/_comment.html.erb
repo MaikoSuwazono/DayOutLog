@@ -1,7 +1,16 @@
 <tr id="comment-<%= comment.id %>">
   <td>
-    <h3 class="small d-inline"><%= comment.user.name %></h3>
-    <h3 class="small d-inline text-secondary"><%= l(comment.created_at, format: :time) %></h3>
+    <ul class="list-inline d-flex mb-1">
+      <li class="list-inline-item">
+        <%= link_to user_path(comment.user), class: "link-body-emphasis link-underline link-underline-opacity-0 link-underline-opacity-75-hover" do %>
+          <%= image_tag comment.user.avatar_url, class: 'rounded-circle mr15', width: '20', height: '20' %>
+          <%= "#{comment.user.name}" %>
+        <% end %>
+      </li>
+      <li class="list-inline-item">
+        <h3 class="small d-inline text-secondary"><%= l(comment.created_at, format: :time) %></h3>
+      </li>
+    </ul>
     <p><%= simple_format(comment.body) %></p>
   </td>
   <td class="action">

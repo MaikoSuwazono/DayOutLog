@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  mount_uploader :avatar, AvatarUploader
+
   def own?(object)
     self.id == object.user_id
   end

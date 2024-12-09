@@ -17,8 +17,13 @@
           </li>
         <% end %>
       </ul>
-      <ul class="list-inline">
-        <li class="list-inline-item"><%= "by #{@post.user.name}" %></li>
+      <ul class="list-inline d-flex flex-row mb-3">
+        <li class="list-inline-item">
+          <%= link_to user_path(@post.user), class: "link-body-emphasis link-underline link-underline-opacity-0 link-underline-opacity-75-hover" do %>
+            <%= image_tag @post.user.avatar_url, class: 'rounded-circle mr15', width: '20', height: '20' %>
+            <%= "#{@post.user.name}" %>
+          <% end %>
+        </li>
         <li class="list-inline-item text-secondary"><%= l(@post.created_at, format: :time) %></li>
       </ul>
       <ul class="list-inline">
