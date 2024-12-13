@@ -3,8 +3,8 @@
   <div class="row">
     <div class="col-lg-9 offset-lg-2 my-5">
       <% if @post.image.present? %>
-        <div class="text-center pb-4">
-          <%= image_tag @post.image.url, height: "300", style: "object-fit: cover;", class: "img-responsive" %>
+        <div class="text-center ratio ratio-16x9 mb-4">
+          <%= image_tag @post.image.url, width: "100%", height: "auto", style: "object-fit: cover;", class: "img-fluid" %>
         </div>
       <% end %>
       <ul class="list-inline d-flex mb-1">
@@ -32,11 +32,13 @@
         </li>
       </ul>
       <p class="fw-bold fs-5"><%= l @post.departure_date %></p>
-      <table class="table">
-        <tbody id="table-post_detail">
-          <%= render @post_details, action_type: :show %>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table">
+          <tbody id="table-post_detail">
+            <%= render @post_details, action_type: :show %>
+          </tbody>
+        </table>
+      </div>
       <% if @post_details.any? { |post_detail| !post_detail.latitude.nil? } %>
         <div class="m-3" id='map' style="height: 400px;"></div>
         <div id="post_details_info" data-json="<%= @post_details.to_json %>" hidden></div>

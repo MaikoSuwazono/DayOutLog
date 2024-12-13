@@ -4,8 +4,8 @@
     <div class="col-lg-9 offset-lg-2 my-5">
       <h1 class="fw-bold fs-3 text-center">新規投稿作成</h1>
       <% if @post.image.present? %>
-        <div class="text-center p-3">
-          <%= image_tag @post.image.url, height: "300", style: "object-fit: cover;", class: "img-responsive" %>
+        <div class="text-center ratio ratio-16x9 mb-4">
+          <%= image_tag @post.image.url, width: "100%", height: "auto", style: "object-fit: cover;", class: "img-fluid" %>
         </div>
       <% end %>
       <h3 style="display: inline;" class="fw-bold"><%= @post.title %></h3>
@@ -14,19 +14,21 @@
         <li class="list-inline-item text-secondary"><%= l(@post.created_at, format: :time)%></li>
       </ul>
       <p class="fw-bold fs-5"><%= l @post.departure_date %></p>
-      <table class="table">
-        <tbody id="table-post_detail">
-          <% if @post_details != nil && @post_details.any? %>
-            <%= render @post_details, action_type: :new %>
-          <% else %>
-            <tr id="post_detail">
-              <td>
-                <p class="text-center p-3">まだ行き先が追加されていません</p>
-              </td>
-            </tr>
-          <% end %>      
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table">
+          <tbody id="table-post_detail">
+            <% if @post_details != nil && @post_details.any? %>
+              <%= render @post_details, action_type: :new %>
+            <% else %>
+              <tr id="post_detail">
+                <td>
+                  <p class="text-center p-3">まだ行き先が追加されていません</p>
+                </td>
+              </tr>
+            <% end %>      
+          </tbody>
+        </table>
+      </div>
       <div id="post_detail-form">
         <%= render 'post_details/form', post_detail: @post_detail, post: @post %>
       </div>
