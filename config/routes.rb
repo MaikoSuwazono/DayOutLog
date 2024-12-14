@@ -5,9 +5,12 @@ Rails.application.routes.draw do
       
   get "up" => "rails/health#show", as: :rails_health_check
 
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   root 'posts#index'
 
   resources :users
+  resources :password_resets, only: %i[new create edit update]
   resources :posts do
     collection do
       get 'search', to: 'posts#search', as: :search

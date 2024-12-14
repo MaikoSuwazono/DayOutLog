@@ -3,7 +3,7 @@
   <div class="row">
     <div class=" col-md-10 col-lg-8 mx-auto">
       <p class="fs-3 text-center fw-bold"><%= t('.title') %></p>
-      <%= form_with url: login_path, model: @user, local: false do |f| %>
+      <%= form_with model: @user, url: password_reset_path(@token) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="mb-3">
           <%= f.label :email %>
@@ -13,19 +13,14 @@
           <%= f.label :password %>
           <%= f.password_field :password, class: "form-control" %>
         </div>
+        <div class="mb-3">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: "form-control" %>
+        </div>
         <div class="d-grid gap-2">
-          <%= f.submit t('.login'), class: "btn btn-success" %>
+          <%= f.submit t('.submit'), class: "btn btn-success" %>
         </div>
       <% end %>
-      <hr>
-      </div>
-      <div class="text-center">
-        <%= link_to image_tag("web_light_sq_SI@1x.png"), auth_at_provider_path(provider: :google) %>
-      </div>
-      <div class="text-center p-3">
-        <%= link_to t('.to_register_page'), new_user_path, class: "link-secondary" %> /
-        <%= link_to t('.password_forget'), new_password_reset_path, class: "link-secondary" %>
-      </div>
     </div>
   </div>
 </div>
