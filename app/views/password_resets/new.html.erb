@@ -1,0 +1,18 @@
+<% content_for(:title, t('.title')) %>
+<div class="container p-3 p-md-5">
+  <div class="row">
+    <div class=" col-md-10 col-lg-8 mx-auto">
+      <p class="fs-3 text-center fw-bold"><%= t('.title') %></p>
+      <%= form_with url: password_resets_path do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="mb-3">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+        <div class="d-grid gap-2">
+          <%= f.submit t('.submit'), class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
