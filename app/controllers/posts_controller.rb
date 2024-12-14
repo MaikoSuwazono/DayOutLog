@@ -2,8 +2,9 @@ class PostsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
   
   def index
-    @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:post_details).where(status: 1).order(created_at: :desc)
+    set_search_object
+    @posts = @q.result(distinct: true).includes([:post_details, :user]).where(status: 1).order(created_at: :desc)
+    @users = User.joins(:posts).where(posts: { status: 1 }).select(:name).distinct
   end
 
   def new
