@@ -7,8 +7,9 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
-  root 'posts#index'
+  root 'welcome#index'
 
+  resources :welcome
   resources :users
   resources :password_resets, only: %i[new create edit update]
   resources :posts do

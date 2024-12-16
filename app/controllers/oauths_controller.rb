@@ -9,13 +9,13 @@ class OauthsController < ApplicationController
     provider = auth_params[:provider]
 
     if @user = login_from(provider)
-      redirect_to root_path, success:"ログインしました"
+      redirect_to posts_path, success:"ログインしました"
     else
       begin
         @user = create_from(provider)
         reset_session
         auto_login(@user)
-        redirect_to root_path, success:"ログインしました"
+        redirect_to posts_path, success:"ログインしました"
       rescue
         redirect_to root_path, danger:"ログインに失敗しました"
       end
