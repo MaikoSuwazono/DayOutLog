@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4VM1VPDD4Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4VM1VPDD4Y');
+    </script>
     <title><%= page_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <% if (controller.controller_name == 'post_details' && controller.action_name == 'new') || (controller.controller_name == 'posts' && controller.action_name == 'show') %>
