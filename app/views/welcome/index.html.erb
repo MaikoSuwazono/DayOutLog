@@ -1,9 +1,61 @@
-<% content_for(:title, "") %>
-<div class="container pt-3">
-  <div class="row">
-    <div class="d-flex align-items-center">
-      <p class="fw-bold">1日の行動を記録しよう</p>
-      <%= image_tag "Allura - In The Park.png" %>
+  <div class="container pt-3">
+    <div class="row">
+      <div class="d-grid gap-2 col-12 mx-auto">
+        <%= image_tag "girl.png", width: "20%", height: "auto", class: "img-fluid mx-auto d-block" %>
+        <h1 class="fw-bold fs-4 mb-3 text-center">どこ行ってきた？</h1>
+        <p class="fs-7 mb-3 text-center">いつものお散歩、グルメ巡り、旅行…<br>あなたの投稿が、誰かの1日のヒントになります</p>
+      </div>
+      <div class="d-grid gap-2 col-5 mx-auto fadein">
+        <%= link_to "投稿を見てみる", posts_path, class: 'btn btn-success mb-5' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="d-grid gap-2 col-10 mx-auto">
+        <h2 class="fw-bold fs-4 m-2">DayOutLogでできること</h2>
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <%= image_tag "post.png", class: "img-fluid rounded-start" %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">投稿する</h5>
+                <p class="card-text">1日の外出記録を時系列で投稿できます</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <%= image_tag "post_map.png", class: "img-fluid rounded-start" %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">投稿を見る</h5>
+                <p class="card-text">
+                  みんなの投稿を見てみましょう！<br>投稿内で登録した位置情報はマップ上にピンで表示されます<br>みんなの1日をのぞいてみましょう
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <%= image_tag "comment.png", class: "img-fluid rounded-start" %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">ユーザーと交流する</h5>
+                <p class="card-text">
+                  投稿はいいねを押したりコメントを残すことができます
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

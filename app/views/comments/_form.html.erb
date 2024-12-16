@@ -2,9 +2,17 @@
   <%= form_with model: comment, url: post_comments_path(post) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <%= f.label :body, class: "fw-bold mb-2" %>
-    <%= f.text_area :body, class: "form-control mb-3", row: "4", placeholder: Comment.human_attribute_name(:body) %>
+    <% if !current_user.nil? %>
+      <%= f.text_area :body, class: "form-control mb-3", row: "4", placeholder: Comment.human_attribute_name(:body) %>
+    <% else %>
+      <%= f.text_area :body, class: "form-control mb-3", row: "4", placeholder: "ログイン後、コメントが可能になります", disabled: true %>
+    <% end %>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <% if !current_user.nil? %>
       <%= f.submit t('helpers.submit.post'), class: "btn btn-dark" %>
+    <% else %>
+      <%= f.submit t('helpers.submit.post'), class: "btn btn-dark", disabled: true %>
+    <% end %>
     </div>
   <% end %>
 </div>

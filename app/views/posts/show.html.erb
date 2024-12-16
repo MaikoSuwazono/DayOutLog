@@ -44,9 +44,7 @@
         <div id="post_details_info" data-json="<%= @post_details.to_json %>" hidden></div>
       <% end %>
       <div class="my-5">
-        <% if !current_user.nil? %>
-          <%= render "comments/form", comment: @comment, post: @post %>
-        <% end %>
+        <%= render "comments/form", comment: @comment, post: @post %>
       </div>
       <p class="fw-bold", id="comment-count"><%= @comments.count %>件のコメント</p>
       <table class="table">
