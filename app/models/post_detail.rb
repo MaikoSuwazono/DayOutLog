@@ -4,6 +4,7 @@ class PostDetail < ApplicationRecord
   validates :body, presence: true
   validates :arrival_at, presence: true
   validate :place_name, :address
+  validates :post_id, presence: true
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?

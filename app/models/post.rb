@@ -9,6 +9,8 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :departure_date, presence: true
+  validates :status, presence: true
+  validates :user_id, presence: true
   validate :day_after_today
 
   mount_uploader :image, PostImageUploader
