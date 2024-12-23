@@ -1,0 +1,63 @@
+name: Rails CI
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:12
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: dayoutlog
+          POSTGRES_PASSWORD: dayoutlog
+          POSTGRES_DB: dayoutlog_test
+
+    env:
+      RAILS_ENV: test
+    
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby 3.3.0
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.0
+
+      - name: Setup bundler
+        run: gem install bundler
+
+      - name: Cache gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+
+      - name: Install gems
+        run: bundle install --path vendor/bundle --jobs 4
+
+      - name: Setup Database
+        run: |
+          cp -v config/database.yml.ci config/database.yml
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
+        env:
+          RAILS_ENV: test
+          POSTGRES_USER: dayoutlog
+          POSTGRES_PASSWORD: dayoutlog
+
+      - name: Run tests
+        run: bundle exec rspec
+        env:
+          AWS_ACCESS_KEY_ID: AKIAU5LH6CP2R3VWEUH4
+          AWS_SECRET_ACCESS_KEY: bCxSN0I6AzK3AQ7n58G59rsWH3H
+      
+      - name: RuboCop
+        run: bundle exec rubocop
