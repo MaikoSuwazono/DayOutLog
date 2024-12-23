@@ -9,12 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      mysql:
-        image: mysql:5.7.44
-        env:
-          MYSQL_ROOT_PASSWORD: #passwordをここ記入 
+      postgres:
+        image: postgres:12
         ports:
-          - 3306:3306
+          - 5432:5432
+        env:
+          POSTGRES_USER: dayoutlog
+          POSTGRES_PASSWORD: <%= ENV["DAYOUTLOG_DATABASE_PASSWORD"] %>
+          POSTGRES_DB: dayoutlog_test
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
 
     steps:
@@ -26,11 +28,11 @@ jobs:
       with:
         ruby-version: '3.2.0' 
 
-    - name: Cache Ruby gems # Ruby gemsをキャッシュします。
+    - name: Cache Ruby gems
       uses: actions/cache@v3
       with:
-        path: vendor/bundle # キャッシュするディレクトリを指定します。
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }} # キャッシュのキーを指定します。
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gems-  # 部分一致する最新のキャッシュを探します。
       
