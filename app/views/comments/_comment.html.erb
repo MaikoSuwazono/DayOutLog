@@ -17,7 +17,7 @@
     <% if !current_user.nil? && current_user.own?(comment) %>
       <ul class="list-inline justify-content-center" style="float: right;">
         <li class="list-inline-item">
-          <%= link_to "削除", post_comment_path(comment.post, comment), class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: "コメントを削除します。よろしいですか？" } %>
+          <%= link_to "削除", post_comment_path(comment.post, comment), class: "btn btn-danger", id: "button-comment-delete-#{comment.id}", data: { turbo_method: :delete, turbo_confirm: "コメントを削除します。よろしいですか？" } %>
         </li>
       </ul>
     <% end %>

@@ -27,12 +27,12 @@ class PostDetailsController < ApplicationController
       @post_detail = PostDetail.new
 
       respond_to do |format|
-        format.html { redirect_to post_post_details_path(@post), notice: '行き先が追加されました。' }
+        format.html { redirect_to post_post_details_path(@post), notice: t('.success') }
         format.turbo_stream
       end
     else
       respond_to do |format|
-        format.html { redirect_to post_post_details_path(@post), danger: '行き先が追加されませんでした。', status: :unprocessable_entity }
+        format.html { redirect_to post_post_details_path(@post), danger: t('.failure'), status: :unprocessable_entity }
         format.turbo_stream
       end
     end
@@ -51,7 +51,7 @@ class PostDetailsController < ApplicationController
     @post_details = @post_detail.post.post_details.order(arrival_at: :asc)
 
     respond_to do |format|
-      format.html { redirect_to post_path(@post_detail.post), notice: '行き先が削除されました。' }
+      format.html { redirect_to post_path(@post_detail.post), notice: t('.success') }
       format.turbo_stream
     end
   end
@@ -61,9 +61,9 @@ class PostDetailsController < ApplicationController
     @post.status = 1
 
     if @post.save
-      redirect_to post_path(@post), success: "記事が投稿されました"
+      redirect_to post_path(@post), success: t('.success')
     else
-      flash.now[:danger] = "記事の投稿に失敗しました"
+      flash.now[:danger] = t('.failure')
       render :preview, status: :unprocessable_entity
     end
   end

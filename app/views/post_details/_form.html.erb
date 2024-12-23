@@ -21,7 +21,7 @@
         <%= f.hidden_field :place_name, id: 'place_name' %>
         <%= f.hidden_field :latitude, id: 'latitude' %>
         <%= f.hidden_field :longitude, id: 'longitude' %>
-        <%= f.label :address %>
+        <%= f.label :address, for: 'pac-input' %>
         <%= f.text_field :address, id: "pac-input", class: "form-control", placeholder: "検索" %>
         <div class="m-3" id='map' style="height: 400px;"></div>
       </div>

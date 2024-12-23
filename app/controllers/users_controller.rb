@@ -26,9 +26,10 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path, success: "ユーザーを更新しました"
+      redirect_to user_path, success: t('.success')
     else
-      render :edit, danger: "ユーザーの更新に失敗しました"
+      flash.now[:danger] = t('.failure')
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -40,5 +41,8 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to login_path, flash: { danger: t('activerecord.errors.messages.require_login') }
+    end
   end
 end

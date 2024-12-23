@@ -15,9 +15,9 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to new_post_post_detail_path(@post), success: "記事が作成されました"
+      redirect_to new_post_post_detail_path(@post), success: t('.success')
     else
-      flash.now[:danger] = "記事の作成に失敗しました"
+      flash.now[:danger] = t('.failure')
       render :new, status: :unprocessable_entity
     end
   end
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy!
-    redirect_to posts_path, success: "記事が削除されました", status: :see_other
+    redirect_to posts_path, success: t('.success'), status: :see_other
   end
 
   private

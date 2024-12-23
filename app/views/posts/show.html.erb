@@ -13,7 +13,7 @@
         </li>
         <% if !current_user.nil? && current_user.own?(@post) %>
           <li class="list-inline-item">
-            <%= link_to "削除", post_path(@post), class: "btn btn-danger", id: "button-delete", data: { turbo_method: :delete, turbo_confirm: '記事を削除します。よろしいですか？' } %>
+            <%= link_to "削除", post_path(@post), class: "btn btn-danger", id: "button-post-delete", data: { turbo_method: :delete, turbo_confirm: '記事を削除します。よろしいですか？' } %>
           </li>
         <% end %>
       </ul>
