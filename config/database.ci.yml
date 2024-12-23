@@ -1,0 +1,7 @@
+test:
+  adapter: postgresql
+  encoding: unicode
+  username: dayoutlog
+  password: <%= ENV["DAYOUTLOG_DATABASE_PASSWORD"] %>
+  host: 127.0.0.1
+  database: dayoutlog_test

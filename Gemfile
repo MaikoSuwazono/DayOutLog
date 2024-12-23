@@ -95,6 +95,8 @@ group :development do
   # gem "spring"
 
   gem 'letter_opener_web', '~> 2.0'
+
+  gem 'rubocop', require: false
 end
 
 group :test do
