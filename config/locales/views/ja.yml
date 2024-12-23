@@ -36,15 +36,40 @@ ja:
     create:
       success: ユーザー登録が完了しました
       failure: ユーザー登録に失敗しました
+    update:
+      success: ユーザーを更新しました
+      failure: ユーザーの更新に失敗しました
   posts:
     index:
       title: 記事一覧
+    create:
+      success: 記事が作成されました
+      failure: 記事の作成に失敗しました
+    destroy:
+      success: 記事が削除されました
     new:
       title: 新規投稿作成
       submit: 投稿
   post_details: 
     new:
       title: 行き先を追加
+    create:
+      success: 行き先が追加されました
+      failure: 行き先が追加されませんでした
+    destroy:
+      success: 行き先が削除されました
+    publish:
+      success: 記事が投稿されました
+      failure: 記事の投稿に失敗しました
+  password_resets:
+    create:
+      success: パスワードリセットのメールを送信しました
+    update:
+      success: パスワードがリセットされました
+  oauths:
+    callback:
+      success: ログインしました
+      failure: ログインに失敗しました
   header:
     login: ログイン
     logout: ログアウト

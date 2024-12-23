@@ -1,5 +1,8 @@
 ja:
   activerecord:
+    errors:
+      messages:
+        require_login: ログインしてください
     models:
       user: ユーザー
     attributes:
