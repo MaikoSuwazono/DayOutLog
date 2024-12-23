@@ -16,11 +16,6 @@ jobs:
           POSTGRES_USER: dayoutlog
           POSTGRES_PASSWORD: dayoutlog
           POSTGRES_DB: dayoutlog_test
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     env:
       RAILS_ENV: test
@@ -28,16 +23,6 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: |
-          bundle install
-        
-      - name: Run tests
-        env:
-          DATABASE_URL: postgres://dayoutlog:dayoutlog@localhost:5432/dayoutlog_test
-        run: |
-          bundle exec rspec
 
       - name: Setup Ruby 3.3.0
         uses: ruby/setup-ruby@v1
