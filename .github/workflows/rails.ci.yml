@@ -55,6 +55,9 @@ jobs:
 
       - name: Run tests
         run: bundle exec rspec
+        env:
+          AWS_ACCESS_KEY_ID: AKIAU5LH6CP2R3VWEUH4
+          AWS_SECRET_ACCESS_KEY: bCxSN0I6AzK3AQ7n58G59rsWH3H
       
       - name: RuboCop
         run: bundle exec rubocop
