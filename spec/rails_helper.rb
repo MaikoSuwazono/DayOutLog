@@ -25,8 +25,6 @@ Capybara.register_driver :selenium_chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-Selenium::WebDriver::Chrome::Service.driver_path = '/usr/local/bin/chromedriver'
-
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
