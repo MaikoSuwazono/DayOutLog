@@ -43,6 +43,21 @@ jobs:
       - name: Install gems
         run: bundle install --path vendor/bundle --jobs 4
 
+      - name: Install Chrome and Chromedriver
+        run: |
+          bundle update
+          bundle install google-chrome-stable
+
+      - name: Debug Chrome and Chromedriver
+        run: |
+          google-chrome --version
+          chromedriver --version || echo "chromedriver not installed"
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+    
       - name: Setup Database
         run: |
           cp -v config/database.yml.ci config/database.yml
