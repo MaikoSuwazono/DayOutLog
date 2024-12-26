@@ -20,7 +20,8 @@ Capybara.register_driver :selenium_chrome_headless do |app|
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
-    options: Selenium::WebDriver::Chrome::Options.new(args: ['headless', 'disable-gpu', 'no-sandbox', 'disable-dev-shm-usage'])
+    options: Selenium::WebDriver::Chrome::Options.new(args: ['headless', 'disable-gpu', 'no-sandbox', 'disable-dev-shm-usage']),
+    service: Selenium::WebDriver::Service.chrome(path: '/usr/local/bin/chromedriver')
   )
 end
 
