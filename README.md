@@ -45,4 +45,4 @@
 https://www.figma.com/board/7V7c0nnhgSlGTXMmaMnzso/DayOutLog_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=igdGUbic9eyGdRY6-1
 
 ■ ER図
-[![Image from Gyazo](https://i.gyazo.com/e07f800fed29d934f9a35728bf354c5b.png)](https://gyazo.com/e07f800fed29d934f9a35728bf354c5b)
+[![Image from Gyazo](https://i.gyazo.com/b4298a0e00e0c419d6cb3f70a222a585.png)](https://gyazo.com/b4298a0e00e0c419d6cb3f70a222a585)
