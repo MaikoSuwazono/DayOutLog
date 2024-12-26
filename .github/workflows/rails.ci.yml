@@ -50,9 +50,14 @@ jobs:
           sudo add-apt-repository ppa:alessandro-strada/ppa
           sudo apt-get update
           sudo apt-get install google-drive-ocamlfuse
-          google-drive-ocamlfuse
+          google-drive-ocamlfuse -id ${{ secrets.GOOGLE_CLIENT_ID }} -secret ${{ secrets.GOOGLE_CLIENT_SECRET }}
           mkdir ~/gdrive
           google-drive-ocamlfuse ~/gdrive
+        env:
+          RAILS_ENV: ${{ secrets.RAILS_ENV }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+
 
       - name: Debug Chrome and Chromedriver
         run: |
@@ -77,8 +82,8 @@ jobs:
       - name: Run tests
         run: bundle exec rspec
         env:
-          AWS_ACCESS_KEY_ID: AKIAU5LH6CP2R3VWEUH4
-          AWS_SECRET_ACCESS_KEY: bCxSN0I6AzK3AQ7n58G59rsWH3H
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       
       - name: RuboCop
         run: bundle exec rubocop
