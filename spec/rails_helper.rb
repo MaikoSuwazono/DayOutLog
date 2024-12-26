@@ -13,14 +13,14 @@ require 'capybara/rspec'
 require 'webdrivers'
 
 Capybara.default_driver = :selenium_chrome
-Capybara.javascript_driver = :selenium_chrome
+Capybara.javascript_driver = :selenium_chrome_headless
 Capybara.default_max_wait_time = 5 
 
-Capybara.register_driver :selenium_chrome do |app|
+Capybara.register_driver :selenium_chrome_headless do |app|
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
-    options: Selenium::WebDriver::Chrome::Options.new
+    options: Selenium::WebDriver::Chrome::Options.new(args: ['headless', 'disable-gpu', 'no-sandbox', 'disable-dev-shm-usage'])
   )
 end
 
