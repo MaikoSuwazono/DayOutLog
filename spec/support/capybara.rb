@@ -8,7 +8,8 @@ Capybara.register_driver :selenium_chrome do |app|
     browser: :chrome,
     options: Selenium::WebDriver::Chrome::Options.new(
       args: %w[headless disable-gpu no-sandbox disable-dev-shm-usage]
-    )
+    ),
+    service: Selenium::WebDriver::Service.chrome(path: '/usr/local/bin/chromedriver')
   )
 end
 
