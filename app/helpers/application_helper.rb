@@ -13,14 +13,14 @@ module ApplicationHelper
       charset: 'utf-8',
       description: 'DayOutLogでは散歩から旅行まで様々なお出かけ記録を時系列で投稿し、ユーザー同士で共有することができます。',
       keywords: '旅行,散歩,アウトドア,共有',
-      canonical: request.original_url,
+      canonical: 'https://www.dayoutlog.com/',
       separator: '|',
       og:{
         site_name: :site,
         title: :title,
         description: :description,
         type: 'website',
-        url: request.original_url,
+        url: 'https://www.dayoutlog.com/',
         image: image_url('DayOutLog_OGP.png'),
         local: 'ja-JP'
       },
