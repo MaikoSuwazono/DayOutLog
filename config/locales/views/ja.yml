@@ -1,4 +1,3 @@
-
 ja:
   helpers:
     submit:
@@ -28,6 +27,10 @@ ja:
     edit:
       title: パスワード再設定
       submit: リセット
+    create:
+      success: パスワードリセットのメールを送信しました
+    update:
+      success: パスワードがリセットされました
   users:
     new:
       title: ユーザー登録
@@ -61,11 +64,6 @@ ja:
     publish:
       success: 記事が投稿されました
       failure: 記事の投稿に失敗しました
-  password_resets:
-    create:
-      success: パスワードリセットのメールを送信しました
-    update:
-      success: パスワードがリセットされました
   oauths:
     callback:
       success: ログインしました
