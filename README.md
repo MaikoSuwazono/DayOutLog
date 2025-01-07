@@ -20,7 +20,7 @@ Instagramなどでお出かけ情報を投稿することができますが、�
 2. 検索機能：投稿タイトルや本文をもとに検索をして、情報収集することができます。
 3. コメント、いいね機能：コメントやいいねをつけることで、ユーザー同士の交流ができたり、投稿者のモチベーションにもつながります。
 
-■ 技術スタック
+# 技術スタック
 | カテゴリ | 技術内容 |
 | ------------- | ------------- |
 |サーバーサイド|Ruby on Rails 7.1.4・Ruby 3.3.0|
@@ -32,8 +32,8 @@ Instagramなどでお出かけ情報を投稿することができますが、�
 |アプリケーションサーバー|Heroku|
 |バージョン管理ツール|GitHub|
 
-■ 画面遷移図
+# 画面遷移図
 https://www.figma.com/board/7V7c0nnhgSlGTXMmaMnzso/DayOutLog_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=igdGUbic9eyGdRY6-1
 
-■ ER図
+# ER図
 [![Image from Gyazo](https://i.gyazo.com/b4298a0e00e0c419d6cb3f70a222a585.png)](https://gyazo.com/b4298a0e00e0c419d6cb3f70a222a585)
