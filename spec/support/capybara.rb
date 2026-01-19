@@ -1,8 +1,17 @@
-Capybara.register_driver :remote_chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument('no-sandbox')
-  options.add_argument('headless')
-  options.add_argument('disable-gpu')
-  options.add_argument('window-size=1680,1050')
-  Capybara::Selenium::Driver.new(app, browser: :remote, url: ENV['SELENIUM_DRIVER_URL'], capabilities: options)
+require 'capybara/rspec'
+require 'selenium-webdriver'
+require 'webdrivers'
+
+Capybara.register_driver :selenium_chrome do |app|
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    options: Selenium::WebDriver::Chrome::Options.new(
+      args: %w[headless disable-gpu no-sandbox disable-dev-shm-usage]
+    ),
+    service: Selenium::WebDriver::Service.chrome(path: '/usr/local/bin/chromedriver')
+  )
 end
+
+Capybara.javascript_driver = :selenium_chrome_headless
+Capybara.default_driver = :selenium_chrome_headless

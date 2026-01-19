@@ -1,0 +1,89 @@
+name: Rails CI
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:12
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: dayoutlog
+          POSTGRES_PASSWORD: dayoutlog
+          POSTGRES_DB: dayoutlog_test
+
+    env:
+      RAILS_ENV: test
+    
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby 3.3.0
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.0
+
+      - name: Setup bundler
+        run: gem install bundler
+
+      - name: Cache gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+
+      - name: Install gems
+        run: bundle install --path vendor/bundle --jobs 4
+
+      - name: Install Chrome and Chromedriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          sudo add-apt-repository ppa:alessandro-strada/ppa
+          sudo apt-get update
+          sudo apt-get install google-drive-ocamlfuse
+          google-drive-ocamlfuse -id ${{ secrets.GOOGLE_CLIENT_ID }} -secret ${{ secrets.GOOGLE_CLIENT_SECRET }} -headless
+          mkdir ~/gdrive
+          google-drive-ocamlfuse ~/gdrive
+        env:
+          RAILS_ENV: ${{ secrets.RAILS_ENV }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+
+
+      - name: Debug Chrome and Chromedriver
+        run: |
+          google-chrome --version
+          chromedriver --version || echo "chromedriver not installed"
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+    
+      - name: Setup Database
+        run: |
+          cp -v config/database.yml.ci config/database.yml
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
+        env:
+          RAILS_ENV: test
+          POSTGRES_USER: dayoutlog
+          POSTGRES_PASSWORD: dayoutlog
+
+      - name: Run tests
+        run: bundle exec rspec
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      
+      - name: RuboCop
+        run: bundle exec rubocop
